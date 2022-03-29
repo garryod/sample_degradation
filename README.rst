@@ -3,8 +3,7 @@ degradation_eda
 
 |code_ci| |docs_ci| |coverage| |pypi_version| |license|
 
-This is where you should write a short paragraph that describes what your module does,
-how it does it, and why people should use it.
+This repository tracks exploratory data analysis performed with the aim of quantifying sample degradation when subject to syncrotron radiation.
 
 ============== ==============================================================
 PyPI           ``pip install degradation_eda``
@@ -12,21 +11,6 @@ Source code    https://github.com/garryod/degradation_eda
 Documentation  https://garryod.github.io/degradation_eda
 Releases       https://github.com/garryod/degradation_eda/releases
 ============== ==============================================================
-
-This is where you should put some images or code snippets that illustrate
-some relevant examples. If it is a library then you might put some
-introductory code here:
-
-.. code:: python
-
-    from degradation_eda.hello import HelloClass
-
-    hello = HelloClass("me")
-    print(hello.format_greeting())
-
-Or if it is a commandline tool then you might put some example commands here::
-
-    degradation_eda person --times=2
 
 .. |code_ci| image:: https://github.com/garryod/degradation_eda/workflows/Code%20CI/badge.svg?branch=master
     :target: https://github.com/garryod/degradation_eda/actions?query=workflow%3A%22Code+CI%22

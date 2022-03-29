@@ -11,20 +11,27 @@ repos:
       - id: black
         name: Run black
         stages: [commit]
-        language: system
+        language: python
         entry: pipenv run black --check --diff
         types: [python]
 
       - id: flake8
         name: Run flake8
         stages: [commit]
-        language: system
+        language: python
         entry: pipenv run flake8
         types: [python]
 
       - id: mypy
         name: Run mypy
         stages: [commit]
-        language: system
+        language: python
         entry: pipenv run mypy src tests
+        pass_filenames: false
+
+      - id: pydocstyle
+        name: Run pydocstyle
+        stages: [commit]
+        language: python
+        entry: pipenv run pydocstyle src tests
         pass_filenames: false

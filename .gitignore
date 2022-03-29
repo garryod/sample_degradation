@@ -63,3 +63,7 @@ target/
 /venv/
 /lightweight-venv/
 /installed.files
+
+# Analysis resources
+/data/
+/results/
