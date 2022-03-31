@@ -8,17 +8,17 @@ FrameDType = TypeVar("FrameDType", bound=number)
 
 
 def mask_frames(
-    images: NDArray[FrameDType],
+    frames: NDArray[FrameDType],
     mask: NDArray[bool_],
 ) -> NDArray[FrameDType]:
-    """Replaces masked elemenets of images in a stack with zero.
+    """Replaces masked elemenets of frames in a stack with zero.
 
     Args:
-        images (NDArray[FrameDType]): A stack of images to be masked.
-        mask (NDArray[bool_]): The boolean mask to apply to each image.
+        frames (NDArray[FrameDType]): A stack of frames to be masked.
+        mask (NDArray[bool_]): The boolean mask to apply to each frame.
 
     Returns:
-        NDArray[FrameDType]: A stack of images where masked elements are
+        NDArray[FrameDType]: A stack of frames where masked elements are
             replaced by zero.
     """
-    return masked_where(broadcast_to(mask, images.shape), images).filled(fill_value=0)
+    return masked_where(broadcast_to(mask, frames.shape), frames).filled(fill_value=0)
