@@ -1,3 +1,4 @@
+from .dark_current import correct_dark_current
 from .deadtime import correct_deadtime
 from .masking import mask_frames
 from .reading import load_data
@@ -8,4 +9,5 @@ __all__ = [
     "mask_frames",
     "estimate_poisson_uncertainty",
     "correct_deadtime",
+    "correct_dark_current",
 ]

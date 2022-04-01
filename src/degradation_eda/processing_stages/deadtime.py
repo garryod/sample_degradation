@@ -21,8 +21,8 @@ def correct_deadtime(
             each frame.
 
     Returns:
-        NDArray[floating]: The corrected stack of frames.
-        NDArray[floating]: The updated uncertainties.
+        Tuple[NDArray[floating], NDArray[floating]]: The corrected stack of frames and
+            their updated uncertainties.
     """
     scale_factors = divide(
         count_times + dead_times, count_times, dtype=floating
