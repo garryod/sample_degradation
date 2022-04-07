@@ -1,13 +1,12 @@
-from typing import TypeVar
+from typing import Any, TypeVar
 
 from nexusformat.nexus import NXFile
-from numpy import array, number
-from numpy.typing import NDArray
+from numpy import array, dtype, ndarray, number
 
-LoadedDType = TypeVar("LoadedDType", bound=number)
+LoadedDType = TypeVar("LoadedDType", bound=dtype[number])
 
 
-def load_data(path: str, key: str) -> NDArray[LoadedDType]:
+def load_data(path: str, key: str) -> ndarray[Any, LoadedDType]:
     """Read raw data at key from a nexus file at path.
 
     Args:
@@ -15,7 +14,7 @@ def load_data(path: str, key: str) -> NDArray[LoadedDType]:
         key (str): The key of the data within the nexus file.
 
     Returns:
-        NDArray: A numpy array of data.
+        ndarray[Any, LoadedDType]: A numpy array of data.
     """
     with NXFile(path, "r") as file:
         return array(file[key])
