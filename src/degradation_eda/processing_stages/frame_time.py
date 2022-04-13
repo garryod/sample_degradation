@@ -1,6 +1,15 @@
 from typing import Any, TypeVar
 
-from numpy import add, broadcast_shapes, dtype, empty, floating, ndarray
+from numpy import (
+    add,
+    atleast_1d,
+    broadcast_shapes,
+    dtype,
+    empty,
+    expand_dims,
+    floating,
+    ndarray,
+)
 
 from degradation_eda.utils.uncertain_maths import Uncertain, divide_uncertain, uncertain
 
@@ -26,9 +35,15 @@ def correct_frame_time(
         ndarray[FramesShape, Uncertain]: The corrected stack of frames and their
             updated uncertainties.
     """
-    scale_factors = empty(
-        broadcast_shapes(count_times.shape, dead_times.shape), uncertain
-    )[:, None, None]
-    scale_factors["nominal"] = add(count_times, dead_times)[:, None, None]
+    scale_factors = expand_dims(
+        atleast_1d(
+            empty(broadcast_shapes(count_times.shape, dead_times.shape), uncertain)
+        ),
+        (1, 2),
+    )
+    scale_factors["nominal"] = expand_dims(
+        atleast_1d(add(count_times, dead_times)),
+        (1, 2),
+    )
     scale_factors["uncertainty"] = 0
     return divide_uncertain(frames, scale_factors)
