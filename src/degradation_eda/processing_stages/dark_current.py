@@ -1,6 +1,7 @@
 from typing import Any, TypeVar
 
-from numpy import array, ndarray
+from numpy import array
+from numpy.ma import MaskedArray, masked_array
 
 from degradation_eda.utils.uncertain_maths import (
     Uncertain,
@@ -12,18 +13,21 @@ FrameShape = TypeVar("FrameShape", bound=Any)
 
 
 def correct_dark_current(
-    frames: ndarray[FrameShape, Uncertain],
+    frames: MaskedArray[FrameShape, Uncertain],
     dark_current: float,
-) -> ndarray[FrameShape, Uncertain]:
+) -> MaskedArray[FrameShape, Uncertain]:
     """Correct for dark current by subtracting a constant.
 
     Args:
-        frames (ndarray[FrameShape, Uncertain]): A stack of frames to be corrected and
-            their uncertaintities.
+        frames (MaskedArray[FrameShape, Uncertain]): A stack of frames to be corrected
+            and their uncertaintities.
         dark_current (float): The dark current flux.
 
     Returns:
-        ndarray[FrameShape, Uncertain]: The corrected stack of frames and their updated
-            uncertainties.
+        MaskedArray[FrameShape, Uncertain]: The corrected stack of frames and their
+            updated uncertainties.
     """
-    return subtract_uncertain(frames, array([(dark_current, 0.0)], dtype=uncertain))
+    return masked_array(
+        subtract_uncertain(frames.data, array([(dark_current, 0.0)], dtype=uncertain)),
+        frames.mask,
+    )

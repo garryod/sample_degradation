@@ -10,6 +10,7 @@ from numpy import (
     floating,
     ndarray,
 )
+from numpy.ma import MaskedArray, masked_array
 
 from degradation_eda.utils.uncertain_maths import (
     Uncertain,
@@ -22,21 +23,21 @@ TimesShape = TypeVar("TimesShape", bound=Any)
 
 
 def correct_deadtime(
-    frames: ndarray[FramesShape, Uncertain],
+    frames: MaskedArray[FramesShape, Uncertain],
     count_times: ndarray[TimesShape, dtype[floating]],
     dead_times: ndarray[TimesShape, dtype[floating]],
-) -> ndarray[FramesShape, Uncertain]:
+) -> MaskedArray[FramesShape, Uncertain]:
     """Correct for detector deadtime by scaling photon counts according to the duty cycle.
 
     Args:
-        frames (ndarray[FramesShape, Uncertain]): A stack of frames to be corrected.
+        frames (MaskedArray[FramesShape, Uncertain]): A stack of frames to be corrected.
         count_times (ndarray[TimesShape, dtype[floating]]): The period over which
             photons are counted for each frame.
         dead_times (ndarray[TimesShape, dtype[floating]]): The period over which
             photons are not counted for each frame.
 
     Returns:
-        ndarray[FramesShape, Uncertain]: The corrected stack of frames and their
+        MaskedArray[FramesShape, Uncertain]: The corrected stack of frames and their
             updated uncertainties.
     """
     scale_factors = expand_dims(
@@ -50,4 +51,4 @@ def correct_deadtime(
         (1, 2),
     )
     scale_factors["uncertainty"] = 0
-    return multiply_uncertain(frames, scale_factors)
+    return masked_array(multiply_uncertain(frames.data, scale_factors), frames.mask)

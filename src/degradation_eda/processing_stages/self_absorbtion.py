@@ -14,6 +14,7 @@ from numpy import (
     power,
     tan,
 )
+from numpy.ma import MaskedArray, masked_array
 
 from degradation_eda.utils.uncertain_maths import (
     Uncertain,
@@ -84,16 +85,16 @@ def self_absorbtion_correction_factors(
 
 
 def correct_self_absorbtion(
-    frames: ndarray[FramesShape, Uncertain],
+    frames: MaskedArray[FramesShape, Uncertain],
     beam_center: Tuple[float, float],
     pixel_sizes: Tuple[float, float],
     distance: float,
     transmissibility: float,
-) -> ndarray[FramesShape, Uncertain]:
+) -> MaskedArray[FramesShape, Uncertain]:
     """Correct for transmission loss due to differences in observation angle.
 
     Args:
-        frames (ndarray[FramesShape, Uncertain]): A stack of uncertain frames to be
+        frames (MaskedArray[FramesShape, Uncertain]): A stack of uncertain frames to be
             corrected.
         beam_center (Tuple[float, float]): The center position of the beam in pixels.
         pixel_sizes (Tuple[float, float]): The real space size of a detector pixel.
@@ -101,7 +102,7 @@ def correct_self_absorbtion(
         transmissibility (float): The transmissibility of the sample.
 
     Returns:
-        ndarray[FramesShape, Uncertain]: The corrected stack of frames and their
+        MaskedArray[FramesShape, Uncertain]: The corrected stack of frames and their
             updated uncertainties.
     """
     correction_factors = empty(frames.shape[1:], uncertain)
@@ -113,4 +114,6 @@ def correct_self_absorbtion(
         transmissibility,
     )
     correction_factors["uncertainty"] = 0
-    return multiply_uncertain(frames, correction_factors)
+    return masked_array(
+        multiply_uncertain(frames.data, correction_factors), frames.mask
+    )
