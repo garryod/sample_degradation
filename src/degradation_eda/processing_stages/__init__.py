@@ -1,3 +1,4 @@
+from .azimuthal_integration import azimuthally_integrate
 from .background_subtraction import subtract_background
 from .dark_current import correct_dark_current
 from .deadtime import correct_deadtime
@@ -20,4 +21,5 @@ __all__ = [
     "correct_self_absorbtion",
     "average_frames",
     "subtract_background",
+    "azimuthally_integrate",
 ]
