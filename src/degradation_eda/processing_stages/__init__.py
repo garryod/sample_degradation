@@ -1,3 +1,4 @@
+from .angular_efficiency import correct_angular_efficincy
 from .azimuthal_integration import azimuthally_integrate
 from .background_subtraction import subtract_background
 from .dark_current import correct_dark_current
@@ -23,5 +24,6 @@ __all__ = [
     "average_frames",
     "subtract_background",
     "correct_flatfield",
+    "correct_angular_efficincy",
     "azimuthally_integrate",
 ]
