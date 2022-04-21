@@ -10,6 +10,7 @@ from .frame_time import correct_frame_time
 from .masking import mask_frames
 from .reading import load_data
 from .self_absorbtion import correct_self_absorbtion
+from .solid_angle import correct_solid_angle
 from .uncertainties import estimate_poisson_uncertainty
 
 __all__ = [
@@ -25,5 +26,6 @@ __all__ = [
     "subtract_background",
     "correct_flatfield",
     "correct_angular_efficincy",
+    "correct_solid_angle",
     "azimuthally_integrate",
 ]
