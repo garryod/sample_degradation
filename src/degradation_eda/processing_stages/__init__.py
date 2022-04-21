@@ -2,6 +2,7 @@ from .azimuthal_integration import azimuthally_integrate
 from .background_subtraction import subtract_background
 from .dark_current import correct_dark_current
 from .deadtime import correct_deadtime
+from .flatfield import correct_flatfield
 from .flux_and_transmission import correct_flux_and_transmission
 from .frame_average import average_frames
 from .frame_time import correct_frame_time
@@ -21,5 +22,6 @@ __all__ = [
     "correct_self_absorbtion",
     "average_frames",
     "subtract_background",
+    "correct_flatfield",
     "azimuthally_integrate",
 ]
