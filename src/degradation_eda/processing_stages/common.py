@@ -3,7 +3,7 @@ from typing import Tuple
 from numpy import arctan, dtype, floating, hypot, linspace, meshgrid, ndarray
 
 
-def pixel_angles(
+def scattering_angles(
     frame_shape: Tuple[int, int],
     beam_center: Tuple[float, float],
     pixel_sizes: Tuple[float, float],

@@ -3,7 +3,7 @@ from typing import Any, Tuple, TypeVar
 from numpy import cos, empty, exp
 from numpy.ma import MaskedArray, masked_array
 
-from degradation_eda.processing_stages.common import pixel_angles
+from degradation_eda.processing_stages.common import scattering_angles
 from degradation_eda.utils.uncertain_maths import Uncertain, divide_uncertain, uncertain
 
 FramesShape = TypeVar("FramesShape", bound=Any)
@@ -37,7 +37,7 @@ def correct_angular_efficincy(
     absorbtion_efficiency["nominal"] = 1 - exp(
         -absorbtion_coefficient
         * thickness
-        / cos(pixel_angles(frames[0].shape, beam_center, pixel_sizes, distance))
+        / cos(scattering_angles(frames[0].shape, beam_center, pixel_sizes, distance))
     )
     absorbtion_efficiency["uncertainty"] = 0
     return masked_array(divide_uncertain(frames, absorbtion_efficiency), frames.mask)

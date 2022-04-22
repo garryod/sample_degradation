@@ -3,7 +3,7 @@ from typing import Any, Tuple, TypeVar, cast
 from numpy import cos, dtype, empty, floating, log, ndarray, power
 from numpy.ma import MaskedArray, masked_array
 
-from degradation_eda.processing_stages.common import pixel_angles
+from degradation_eda.processing_stages.common import scattering_angles
 from degradation_eda.utils.uncertain_maths import (
     Uncertain,
     multiply_uncertain,
@@ -33,7 +33,7 @@ def self_absorbtion_correction_factors(
         ndarray[Any, dtype[floating]]: An array of correction factors to be applied to
             frames.
     """
-    angles = pixel_angles(frame_shape, beam_center, pixel_sizes, distance)
+    angles = scattering_angles(frame_shape, beam_center, pixel_sizes, distance)
     return (1 - power(transmissibility, 1 / cos(angles) - 1)) / (
         log(transmissibility) * (1 - 1 / cos(angles))
     )

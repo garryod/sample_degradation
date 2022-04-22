@@ -3,7 +3,7 @@ from typing import Any, Tuple, TypeVar, cast
 from numpy import divide, dtype, floating, histogram, int_, ndarray
 from numpy.ma import MaskedArray
 
-from degradation_eda.processing_stages.self_absorbtion import pixel_angles
+from degradation_eda.processing_stages.self_absorbtion import scattering_angles
 
 FrameWidth = TypeVar("FrameWidth", bound=int)
 FrameHeight = TypeVar("FrameHeight", bound=int)
@@ -44,7 +44,7 @@ def azimuthally_integrate(
         ]: A tuple containing the azimuthal intensities at a set of linearly spaced
             azimuths and those corresponding azimuthal centroids.
     """
-    angles = pixel_angles(
+    angles = scattering_angles(
         cast(Tuple[FrameWidth, FrameHeight], frame.shape),
         beam_center,
         pixel_sizes,

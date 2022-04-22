@@ -3,7 +3,7 @@ from typing import Tuple, TypeVar
 from numpy import arccos, empty
 from numpy.ma import MaskedArray, masked_array
 
-from degradation_eda.processing_stages.common import pixel_angles
+from degradation_eda.processing_stages.common import scattering_angles
 from degradation_eda.utils.uncertain_maths import Uncertain, divide_uncertain, uncertain
 
 FramesShape = TypeVar("FramesShape", bound=Tuple[int, int, int])
@@ -30,7 +30,7 @@ def correct_solid_angle(
     """
     correction = empty(frames.shape[1:], dtype=uncertain)
     correction["nominal"] = arccos(
-        pixel_angles(frames.shape[1:], beam_center, pixel_sizes, distance)
+        scattering_angles(frames.shape[1:], beam_center, pixel_sizes, distance)
     )
     correction["uncertainty"] = 0
     return masked_array(
