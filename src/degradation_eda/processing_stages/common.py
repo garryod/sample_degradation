@@ -34,3 +34,31 @@ def scattering_angles(
         ),
     )
     return arctan(hypot(xx, yy) / distance)
+
+
+def azimuthal_angles(
+    frame_shape: Tuple[int, int], beam_center: Tuple[float, float]
+) -> ndarray[Tuple[int, int], dtype[floating]]:
+    """Computes the azimuthal angles of pixels from the beam center.
+
+    Args:
+        frame_shape (Tuple[int, int]): The shape of the frame.
+        beam_center (Tuple[float, float]): The center position of the beam in pixels.
+
+    Returns:
+        ndarray[Tuple[int, int], dtype[floating]]: An array of pixel azimuthal angles
+            from the beam center.
+    """
+    yy, xx = meshgrid(
+        linspace(
+            -beam_center[1],
+            (frame_shape[1] - beam_center[1]),
+            frame_shape[1],
+        ),
+        linspace(
+            -beam_center[0],
+            (frame_shape[0] - beam_center[0]),
+            frame_shape[0],
+        ),
+    )
+    return arctan(xx / yy)
