@@ -18,22 +18,23 @@ FramesShape = TypeVar("FramesShape", bound=Any)
 TimesShape = TypeVar("TimesShape", bound=Any)
 
 
-def correct_frame_time(
+def normalize_frame_time(
     frames: MaskedArray[FramesShape, Uncertain],
     count_times: ndarray[TimesShape, dtype[floating]],
     dead_times: ndarray[TimesShape, dtype[floating]],
 ) -> MaskedArray[FramesShape, Uncertain]:
-    """Correct for detector frame rate by scaling photon counts according to frame time.
+    """Normalize for detector frame rate by scaling photon counts according to frame time.
 
     Args:
-        frames (MaskedArray[FramesShape, Uncertain]): A stack of frames to be corrected.
+        frames (MaskedArray[FramesShape, Uncertain]): A stack of frames to be
+            normalized.
         count_times (ndarray[TimesShape, dtype[floating]]): The period over which
             photons are counted for each frame.
         dead_times (ndarray[TimesShape, dtype[floating]]): The period over which
             photons are not counted for each frame.
 
     Returns:
-        MaskedArray[FramesShape, Uncertain]: The corrected stack of frames and their
+        MaskedArray[FramesShape, Uncertain]: The normalized stack of frames and their
             updated uncertainties.
     """
     scale_factors = expand_dims(

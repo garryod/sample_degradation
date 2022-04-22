@@ -6,7 +6,7 @@ from .deadtime import correct_deadtime
 from .flatfield import correct_flatfield
 from .flux_and_transmission import correct_flux_and_transmission
 from .frame_average import average_frames
-from .frame_time import correct_frame_time
+from .frame_time import normalize_frame_time
 from .masking import mask_frames
 from .polarization import correct_polarization
 from .reading import load_data
@@ -21,7 +21,7 @@ __all__ = [
     "estimate_poisson_uncertainty",
     "correct_deadtime",
     "correct_dark_current",
-    "correct_frame_time",
+    "normalize_frame_time",
     "correct_flux_and_transmission",
     "correct_self_absorbtion",
     "average_frames",
