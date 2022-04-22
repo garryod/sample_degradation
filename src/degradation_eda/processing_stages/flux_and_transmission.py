@@ -12,20 +12,20 @@ from degradation_eda.utils.uncertain_maths import (
 FramesShape = TypeVar("FramesShape", bound=Any)
 
 
-def correct_flux_and_transmission(
+def normalize_transmitted_flux(
     frames: MaskedArray[FramesShape, Uncertain]
 ) -> MaskedArray[FramesShape, Uncertain]:
-    """Correct for incident flux and transmissibility by scaling photon counts.
+    """Normalize for incident flux and transmissibility by scaling photon counts.
 
-    Correct for incident flux and transmissibility by scaling photon counts with
+    Normalize for incident flux and transmissibility by scaling photon counts with
     respect to the total observed flux.
 
     Args:
         frames (MaskedArray[FramesShape, Uncertain]): A stack of uncertain frames to be
-            corrected.
+            normalized.
 
     Returns:
-        MaskedArray[FramesShape, Uncertain]: The corrected stack of frames and their
+        MaskedArray[FramesShape, Uncertain]: The normalized stack of frames and their
             updated uncertainties.
     """
     frame_flux = expand_dims(sum_uncertain(frames.filled(0), axis=(1, 2)), (1, 2))
