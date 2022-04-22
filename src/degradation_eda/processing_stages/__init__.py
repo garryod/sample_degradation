@@ -12,6 +12,7 @@ from .polarization import correct_polarization
 from .reading import load_data
 from .self_absorbtion import correct_self_absorbtion
 from .solid_angle import correct_solid_angle
+from .thickness import normalize_thickness
 from .uncertainties import estimate_poisson_uncertainty
 
 __all__ = [
@@ -29,5 +30,6 @@ __all__ = [
     "correct_angular_efficincy",
     "correct_solid_angle",
     "correct_polarization",
+    "normalize_thickness",
     "azimuthally_integrate",
 ]
