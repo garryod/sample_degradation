@@ -49,6 +49,6 @@ def correct_polarization(
     ) + (1 - horizontal_poarization) * (1 - square(cos(azimuths) * sin(scattering)))
     correction_factor["uncertainty"] = 0
     return masked_array(
-        multiply_uncertain(frames.data, correction_factor),
+        multiply_uncertain(frames, correction_factor),
         frames.mask,
     )
