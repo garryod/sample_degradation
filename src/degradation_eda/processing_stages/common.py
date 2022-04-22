@@ -1,6 +1,6 @@
 from typing import Tuple
 
-from numpy import dtype, hypot, integer, linspace, meshgrid, ndarray, tan
+from numpy import arctan, dtype, floating, hypot, linspace, meshgrid, ndarray
 
 
 def pixel_angles(
@@ -8,7 +8,7 @@ def pixel_angles(
     beam_center: Tuple[float, float],
     pixel_sizes: Tuple[float, float],
     distance: float,
-) -> ndarray[Tuple[int, int], dtype[integer]]:
+) -> ndarray[Tuple[int, int], dtype[floating]]:
     """Computes the angles of pixels from the sample for a given geometry.
 
     Args:
@@ -18,7 +18,7 @@ def pixel_angles(
         distance (float): The distance between the detector and the sample.
 
     Returns:
-        ndarray[Tuple[int, int], dtype[integer]]: An array of pixel angles from the
+        ndarray[Tuple[int, int], dtype[floating]]: An array of pixel angles from the
             sample.
     """
     yy, xx = meshgrid(
@@ -33,4 +33,4 @@ def pixel_angles(
             frame_shape[0],
         ),
     )
-    return tan(hypot(xx, yy) / distance)
+    return arctan(hypot(xx, yy) / distance)
