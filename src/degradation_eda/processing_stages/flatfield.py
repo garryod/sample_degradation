@@ -18,7 +18,11 @@ def correct_flatfield(
     frames: MaskedArray[Tuple[NumFrames, FrameHeight, FrameWidth], Uncertain],
     flatfield: ndarray[Tuple[FrameHeight, FrameWidth], dtype[floating]],
 ) -> MaskedArray[Tuple[NumFrames, FrameHeight, FrameWidth], Uncertain]:
-    """Apply multiplicative flatfield correction.
+    """Apply multiplicative flatfield correction, to correct for inter-pixel sensitivity.
+
+    Apply multiplicative flatfield correction, to correct for inter-pixel sensitivity,
+    as described in section 3.xii of 'The modular small-angle X-ray scattering data
+    correction sequence' [https://doi.org/10.1107/S1600576717015096].
 
     Args:
         frames (MaskedArray[Tuple[NumFrames, FrameHeight, FrameWidth], Uncertain]): A
