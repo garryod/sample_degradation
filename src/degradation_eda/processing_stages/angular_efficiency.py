@@ -19,6 +19,10 @@ def correct_angular_efficincy(
 ) -> MaskedArray[FramesShape, Uncertain]:
     """Corrects for loss due to the angular efficiency of the detector head.
 
+    Corrects for loss due to the angular efficiency of the detector head, as described
+    in section 3.xiii and appendix C of 'The modular small-angle X-ray scattering data
+    correction sequence' [https://doi.org/10.1107/S1600576717015096].
+
     Args:
         frames (MaskedArray[FramesShape, Uncertain]): A stack of uncertain frames to be
             corrected.
