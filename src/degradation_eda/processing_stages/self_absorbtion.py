@@ -48,6 +48,10 @@ def correct_self_absorbtion(
 ) -> MaskedArray[FramesShape, Uncertain]:
     """Correct for transmission loss due to differences in observation angle.
 
+    Correct for transmission loss due to differences in observation angle, as detailed
+    in section 3.4.7 of 'Everything SAXS: small-angle scattering pattern collection and
+    correction' [https://doi.org/10.1088/0953-8984/25/38/383201].
+
     Args:
         frames (MaskedArray[FramesShape, Uncertain]): A stack of uncertain frames to be
             corrected.
