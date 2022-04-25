@@ -1,10 +1,37 @@
-from typing import Any, Tuple, TypeVar
+from itertools import tee
+from math import prod
+from typing import Any, Generator, Iterable, Iterator, Tuple, TypeVar
 
 from h5py import Dataset
 from nexusformat.nexus import NXFile
-from numpy import dtype, ndarray, number, s_, zeros_like
+from numpy import dtype, ndarray, number, s_
 
+T = TypeVar("T")
 LoadedDType = TypeVar("LoadedDType", bound=dtype[number])
+
+
+def _repeat_outer(items: Iterable[T], repeats: int) -> Generator[T, None, None]:
+    for copy in tee(items, repeats):
+        for item in copy:
+            yield item
+
+
+def _repeat_inner(items: Iterable[T], repeats: int) -> Generator[T, None, None]:
+    for item in items:
+        for _ in range(repeats):
+            yield item
+
+
+def _multidimensional_indices(shape: Tuple[int, ...]) -> Iterable[Tuple[int, ...]]:
+    return zip(
+        *[
+            _repeat_outer(
+                list(_repeat_inner(range(shape[idx]), prod(shape[idx + 1 :]))),
+                prod(shape[:idx]),
+            )
+            for idx in range(len(shape))
+        ]
+    )
 
 
 def load_data(
@@ -24,32 +51,21 @@ def load_data(
         return file[key][use_slice]
 
 
-class MappedReader:
-    """Open a mapped dataset and provide an interator of frames."""
+def map_frames(
+    path: str, key: str, frame_dims: int = 2
+) -> Iterator[ndarray[Tuple[int, ...], dtype[number]]]:
+    """Generate frames from a mapped dataset, in row-major order.
 
-    def __init__(self, path: str, dataset: str, frame_dims: int = 2):
-        self.frame_dims = frame_dims
-        self.dataset: Dataset = NXFile(path)[dataset]
+    Args:
+        path (str): The path to the nexus file.
+        key (str): The key of the data within the nexus file.
+        frame_dims (int, optional): The number of dimensions occupied by a frame.
+            Defaults to 2.
 
-    def __iter__(self) -> "MappedReader":
-        self._index = zeros_like(self.dataset.shape[: -self.frame_dims])
-        return self
+    Yields:
+        Iterator[ndarray[Tuple[int, ...], dtype[number]]]: A interator of loaded frames.
+    """
+    dataset: Dataset = NXFile(path)[key]
+    frame_indices = _multidimensional_indices(dataset.shape[:-frame_dims])
 
-    def __next__(self) -> ndarray[Tuple[int, ...], dtype[number]]:
-        frame = self[tuple(self._index)]
-        self._increment_index()
-        return frame
-
-    def __getitem__(
-        self, index: Tuple[int, ...]
-    ) -> ndarray[Tuple[int, ...], dtype[number]]:
-        return self.dataset[index]
-
-    def _increment_index(self):
-        self._index[-1] += 1
-        for pos in reversed(range(len(self._index))):
-            if self._index[pos] == self.dataset.shape[pos]:
-                if pos == 0:
-                    raise StopIteration
-                self._index[pos - 1] += 1
-                self._index[pos] = 0
+    return map(lambda frame_indices: dataset["dataset"][frame_indices], frame_indices)
