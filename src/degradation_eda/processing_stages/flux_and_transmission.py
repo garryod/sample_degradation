@@ -18,7 +18,9 @@ def normalize_transmitted_flux(
     """Normalize for incident flux and transmissibility by scaling photon counts.
 
     Normalize for incident flux and transmissibility by scaling photon counts with
-    respect to the total observed flux.
+    respect to the total observed flux, as detailed in section 4 of `The modular small-
+    angle X-ray scattering data correction sequence'
+    [https://doi.org/10.1107/S1600576717015096].
 
     Args:
         frames (MaskedArray[FramesShape, Uncertain]): A stack of uncertain frames to be
