@@ -1,7 +1,7 @@
 from typing import Any, Tuple, TypeVar, cast
 
 from numpy import divide, dtype, floating, histogram, int_, ndarray
-from numpy.ma import MaskedArray
+from numpy.ma import MaskedArray, masked_where
 
 from degradation_eda.processing_stages.self_absorbtion import scattering_angles
 
@@ -44,25 +44,28 @@ def azimuthally_integrate(
         ]: A tuple containing the azimuthal intensities at a set of linearly spaced
             azimuths and those corresponding azimuthal centroids.
     """
-    angles = scattering_angles(
-        cast(Tuple[FrameWidth, FrameHeight], frame.shape),
-        beam_center,
-        pixel_sizes,
-        distance,
+    angles: MaskedArray[Tuple[FrameWidth, FrameHeight], dtype[floating]] = masked_where(
+        frame.mask,
+        scattering_angles(
+            cast(Tuple[FrameWidth, FrameHeight], frame.shape),
+            beam_center,
+            pixel_sizes,
+            distance,
+        ),
     )
     range = (
-        angles[~frame.mask].min(),
-        angles[~frame.mask].max(),
+        angles.min(),
+        angles.max(),
     )
     hist, edges = histogram(
-        angles, weights=frame.filled(0.0), bins=num_bins, range=range
+        angles.filled(0.0), weights=frame.filled(0.0), bins=num_bins, range=range
     )
     norm, _ = histogram(
-        angles,
+        angles.filled(0.0),
         weights=(1 - frame.mask.astype(int_)),
         bins=num_bins,
         range=range,
     )
     azimuthal_intensity = divide(hist, norm)
-    azimuth = (edges[1:] + edges[-1:]) / 2
+    azimuth = (edges[1:] + edges[:-1]) / 2
     return azimuthal_intensity, azimuth
