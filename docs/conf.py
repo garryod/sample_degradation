@@ -4,15 +4,15 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-import degradation_eda
+import sample_degradation
 
 # -- General configuration ------------------------------------------------
 
 # General information about the project.
-project = "degradation_eda"
+project = "sample_degradation"
 
 # The full version, including alpha/beta/rc tags.
-release = degradation_eda.__version__
+release = sample_degradation.__version__
 
 # The short X.Y version.
 if "+" in release:
