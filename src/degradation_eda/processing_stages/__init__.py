@@ -3,6 +3,7 @@ from .azimuthal_integration import azimuthally_integrate
 from .background_subtraction import subtract_background
 from .dark_current import correct_dark_current
 from .deadtime import correct_deadtime
+from .displaced_volume import correct_displaced_volume
 from .flatfield import correct_flatfield
 from .flux_and_transmission import normalize_transmitted_flux
 from .frame_average import average_frames
@@ -31,5 +32,6 @@ __all__ = [
     "correct_solid_angle",
     "correct_polarization",
     "normalize_thickness",
+    "correct_displaced_volume",
     "azimuthally_integrate",
 ]
