@@ -3,7 +3,7 @@ from typing import Any, TypeVar
 from numpy import atleast_1d, dtype, empty, exp, expand_dims, floating, ndarray
 from numpy.ma import MaskedArray, masked_array
 
-from degradation_eda.utils.uncertain_maths import Uncertain, uncertain
+from sample_degradation.utils.uncertain_maths import Uncertain, uncertain
 
 FramesShape = TypeVar("FramesShape", bound=Any)
 TimesShape = TypeVar("TimesShape", bound=Any)

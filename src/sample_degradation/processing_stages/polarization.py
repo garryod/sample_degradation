@@ -3,8 +3,11 @@ from typing import Tuple, TypeVar
 from numpy import cos, empty, sin, square
 from numpy.ma import MaskedArray, masked_array
 
-from degradation_eda.processing_stages.common import azimuthal_angles, scattering_angles
-from degradation_eda.utils.uncertain_maths import (
+from sample_degradation.processing_stages.common import (
+    azimuthal_angles,
+    scattering_angles,
+)
+from sample_degradation.utils.uncertain_maths import (
     Uncertain,
     multiply_uncertain,
     uncertain,

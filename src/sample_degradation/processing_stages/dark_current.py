@@ -4,7 +4,7 @@ from numpy import dtype, empty, expand_dims, floating, ndarray
 from numpy.ma import MaskedArray, masked_array
 from pandas import array
 
-from degradation_eda.utils.uncertain_maths import (
+from sample_degradation.utils.uncertain_maths import (
     Uncertain,
     multiply_uncertain,
     subtract_uncertain,

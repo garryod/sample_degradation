@@ -2,7 +2,7 @@ from typing import Any, Tuple, TypeVar
 
 from numpy.ma import MaskedArray, masked_array
 
-from degradation_eda.utils.uncertain_maths import Uncertain, subtract_uncertain
+from sample_degradation.utils.uncertain_maths import Uncertain, subtract_uncertain
 
 FramesShape = TypeVar("FramesShape", bound=Any)
 

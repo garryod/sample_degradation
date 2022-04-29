@@ -4,10 +4,10 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-degradation_eda = {editable = true, extras = ["dev"], path = "."}
+sample_degradation = { editable = true, extras = ["dev"], path = "." }
 
 [packages]
-degradation_eda = {editable = true, path = "."}
+sample_degradation = { editable = true, path = "." }
 
 [scripts]
 lint = "pre-commit run --all-files --show-diff-on-failure --color=always -v"

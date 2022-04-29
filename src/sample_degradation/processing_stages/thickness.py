@@ -3,7 +3,11 @@ from typing import Tuple, TypeVar
 from numpy import empty
 from numpy.ma import MaskedArray, masked_array
 
-from degradation_eda.utils.uncertain_maths import Uncertain, divide_uncertain, uncertain
+from sample_degradation.utils.uncertain_maths import (
+    Uncertain,
+    divide_uncertain,
+    uncertain,
+)
 
 FramesShape = TypeVar("FramesShape", bound=Tuple[int, int, int])
 

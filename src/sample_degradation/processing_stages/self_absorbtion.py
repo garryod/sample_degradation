@@ -3,8 +3,8 @@ from typing import Any, Tuple, TypeVar, cast
 from numpy import cos, dtype, empty, exp, floating, log, ndarray, power
 from numpy.ma import MaskedArray, masked_array
 
-from degradation_eda.processing_stages.common import scattering_angles
-from degradation_eda.utils.uncertain_maths import (
+from sample_degradation.processing_stages.common import scattering_angles
+from sample_degradation.utils.uncertain_maths import (
     Uncertain,
     multiply_uncertain,
     uncertain,

@@ -10,7 +10,7 @@ Practical step-by-step guides for the more experienced user.
 
     reference/api
     reference/contributing
-    Releases <https://github.com/garryod/degradation_eda/releases>
+    Releases <https://github.com/garryod/sample_degradation/releases>
     Index <genindex.html#http://>
 
 ..

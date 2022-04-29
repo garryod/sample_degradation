@@ -3,7 +3,7 @@ from typing import Any, Tuple, TypeVar, cast
 from numpy import divide, dtype, floating, histogram, int_, ndarray
 from numpy.ma import MaskedArray, masked_where
 
-from degradation_eda.processing_stages.self_absorbtion import scattering_angles
+from sample_degradation.processing_stages.self_absorbtion import scattering_angles
 
 FrameWidth = TypeVar("FrameWidth", bound=int)
 FrameHeight = TypeVar("FrameHeight", bound=int)

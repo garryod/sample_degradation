@@ -3,7 +3,7 @@ from typing import Any, TypeVar
 from numpy import array
 from numpy.ma import MaskedArray, masked_array
 
-from degradation_eda.utils.uncertain_maths import (
+from sample_degradation.utils.uncertain_maths import (
     Uncertain,
     divide_uncertain,
     sum_uncertain,
