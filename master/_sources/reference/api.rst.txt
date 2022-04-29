@@ -1,12 +1,12 @@
 API
 ===
 
-.. automodule:: degradation_eda
+.. automodule:: sample_degradation
 
-    ``degradation_eda``
-    -------------------
+    ``sample_degradation``
+    ----------------------
 
-.. data:: degradation_eda.__version__
+.. data:: sample_degradation.__version__
     :type: str
 
     Version number as calculated by https://github.com/dls-controls/versiongit

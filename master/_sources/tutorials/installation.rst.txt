@@ -35,14 +35,14 @@ Installing the library
 
 You can now use ``pip`` to install the library::
 
-    python3 -m pip install degradation_eda
+    python3 -m pip install sample_degradation
 
 If you require a feature that is not currently released you can also install
 from github::
 
-    python3 -m pip install git+git://github.com/garryod/degradation_eda.git
+    python3 -m pip install git+git://github.com/garryod/sample_degradation.git
 
 The library should now be installed and the commandline interface on your path.
 You can check the version that has been installed by typing::
 
-    degradation_eda --version
+    sample_degradation --version
