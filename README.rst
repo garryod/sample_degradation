@@ -1,7 +1,7 @@
 Sample Degradation
 ===========================
 
-|code_ci| |docs_ci| |coverage| |pypi_version| |license|
+|code_ci| |docs_ci| |coverage| |license|
 
 This repository tracks the work performed with the aim of quantifying sample degradation when subject to syncrotron radiation.
 
