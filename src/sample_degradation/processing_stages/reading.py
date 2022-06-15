@@ -16,7 +16,7 @@ from typing import (
 
 from h5py import Dataset
 from nexusformat.nexus import NXFile
-from numpy import dtype, ndarray, number, s_
+from numpy import array, dtype, ndarray, number, s_
 
 T = TypeVar("T")
 LoadedDType = TypeVar("LoadedDType", bound=dtype[number])
@@ -60,7 +60,13 @@ def load_data(
         ndarray[Any, LoadedDType]: A numpy array of data.
     """
     with NXFile(path, "r") as file:
-        return file[key][use_slice]
+        dataset: Dataset = file[key]
+        if dataset.shape == ():
+            if use_slice != s_[:]:
+                raise ValueError("Cannot take slice of scalar dataset")
+            return array(dataset)
+        else:
+            return dataset[use_slice]
 
 
 def map_frames(
@@ -80,7 +86,7 @@ def map_frames(
     dataset: Dataset = NXFile(path)[key]
     frame_indices = _multidimensional_indices(dataset.shape[:-frame_dims])
 
-    return map(lambda frame_indices: dataset["dataset"][frame_indices], frame_indices)
+    return map(lambda frame_indices: dataset[frame_indices], frame_indices)
 
 
 class ProcessArgs(TypedDict, total=False):  # noqa: D101
