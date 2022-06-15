@@ -21,4 +21,6 @@ def show_frame(frame: ndarray[Any, dtype[number]], log_z: float = 1.0, **kwargs)
         if log_z > 1
         else BASE_SCALE
     )
-    imshow(frame, color_continuous_scale=color_scale, **kwargs).show()
+    imshow(
+        frame, color_continuous_scale=color_scale, binary_string=True, **kwargs
+    ).show()
