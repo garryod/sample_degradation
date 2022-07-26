@@ -27,8 +27,9 @@
 	"extensions": [
 		"ms-python.python",
 		"ms-python.vscode-pylance",
-		"ms-vscode.cpptools",
 		"ryanluker.vscode-coverage-gutters",
+		"ms-toolsai.jupyter",
+		"ms-toolsai.jupyter-renderers",
 		"tamasfe.even-better-toml"
 	],
 	"features": {
