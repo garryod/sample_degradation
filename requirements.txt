@@ -1,3 +1,4 @@
+adcorr==0.1.0
 alabaster==0.7.12
 attrs==21.4.0
 Babel==2.10.3
@@ -12,6 +13,7 @@ docutils==0.17.1
 filelock==3.7.1
 flake8==4.0.1
 flake8-isort==4.1.2.post0
+h5py==3.7.0
 identify==2.5.2
 idna==3.3
 imagesize==1.4.1
@@ -23,6 +25,7 @@ mccabe==0.6.1
 mypy==0.971
 mypy-extensions==0.4.3
 nodeenv==1.7.0
+numpy==1.23.1
 packaging==21.3
 pathspec==0.9.0
 platformdirs==2.5.2
@@ -39,6 +42,7 @@ pytest-cov==3.0.0
 pytz==2022.1
 PyYAML==6.0
 requests==2.28.1
+scipy==1.8.1
 snowballstemmer==2.2.0
 Sphinx==5.1.0
 sphinx-rtd-theme==1.0.0
