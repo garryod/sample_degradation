@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contributing &mdash; sample_degradation 0.0+untagged.ge810ed5 documentation</title>
+  <title>Contributing &mdash; sample_degradation 0.0+untagged.g26b1c3e documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -99,8 +99,8 @@ your time coding something that might not fit the scope of the project.</p>
 <p>To get the source source code and run the unit tests, run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone git://github.com/garryod/sample_degradation.git
 $ cd sample_degradation
-$ pipenv install --dev
-$ pipenv run tests
+$ pip install -e .[dev]
+$ pytest
 </pre></div>
 </div>
 <p>While 100% code coverage does not make a library bug-free, it significantly
@@ -118,12 +118,12 @@ same or is improved by a pull request!</p>
 </ul>
 <p>These checks will be run by <a class="reference external" href="https://pre-commit.com/">pre-commit</a>. You can either choose to run these
 tests on all files tracked by git:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pipenv run lint
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pre-commit run --all-files --show-diff-on-failure --color=always -v
 </pre></div>
 </div>
 <p>Or you can install a pre-commit hook that will run each time you do a <code class="docutils literal notranslate"><span class="pre">git</span>
 <span class="pre">commit</span></code> on just the files that have changed:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pipenv run pre-commit install
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pre-commit install
 </pre></div>
 </div>
 <p>Docstrings are pre-processed using the Sphinx Napoleon extension. As such,
@@ -161,7 +161,7 @@ docstrings of the API.</p>
 </pre></div>
 </div>
 <p>You can build the docs from the project directory by running:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pipenv run docs
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sphinx-build -EWT --keep-going docs build/html
 $ firefox build/html/index.html
 </pre></div>
 </div>
