@@ -1,7 +1,7 @@
 adcorr==0.1.0
 alabaster==0.7.12
 asttokens==2.0.5
-attrs==21.4.0
+attrs==22.1.0
 Babel==2.10.3
 backcall==0.2.0
 black==22.6.0
