@@ -1,4 +1,4 @@
-adcorr==0.1.0
+adcorr==0.2.0
 alabaster==0.7.12
 asttokens==2.0.5
 attrs==22.1.0
