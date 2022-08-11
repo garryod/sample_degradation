@@ -27,18 +27,11 @@ repos:
         stages: [commit]
         language: system
         entry: pydocstyle
-        files: >
-          (?x)^(
-            src\
-          )
+        files: ^(src\/).*\.py
 
       - id: mypy
         name: Run mypy
         stages: [commit]
         language: system
         entry: mypy
-        files: >
-          (?x)^(
-            src/
-            tests/
-          )
+        files: ^(src\/|tests\/).*\.py
