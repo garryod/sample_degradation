@@ -27,7 +27,7 @@ identify==2.5.3
 idna==3.3
 imagesize==1.4.1
 iniconfig==1.1.1
-ipykernel==6.15.1
+ipykernel==6.15.2
 ipython==8.4.0
 isort==5.10.1
 jedi==0.18.1
