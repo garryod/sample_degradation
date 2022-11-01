@@ -36,7 +36,7 @@ jupyter-client==7.4.4
 jupyter-core==4.11.2
 kiwisolver==1.4.4
 MarkupSafe==2.1.1
-matplotlib==3.6.0
+matplotlib==3.6.1
 matplotlib-inline==0.1.6
 mccabe==0.7.0
 mypy==0.982
