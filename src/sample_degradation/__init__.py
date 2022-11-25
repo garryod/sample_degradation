@@ -1,4 +1,4 @@
-from . import reading
-from ._version_git import __version__
+from importlib.metadata import version
 
-__all__ = ["__version__", "reading"]
+__version__ = version("sample_degradation")
+del version
