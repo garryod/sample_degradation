@@ -19,7 +19,7 @@ entrypoints==0.4
 executing==1.2.0
 filelock==3.8.0
 flake8==5.0.4
-flake8-isort==5.0.0
+flake8-isort==5.0.3
 fonttools==4.38.0
 h5py==3.7.0
 hdf5plugin==3.3.1
