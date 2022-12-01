@@ -18,7 +18,7 @@ docutils==0.17.1
 entrypoints==0.4
 executing==1.2.0
 filelock==3.8.0
-flake8==5.0.4
+flake8==6.0.0
 flake8-isort==5.0.0
 fonttools==4.38.0
 h5py==3.7.0
