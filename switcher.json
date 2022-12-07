@@ -1,0 +1,10 @@
+[
+  {
+    "version": "master",
+    "url": "https://garryod.github.io/sample_degradation/master/"
+  },
+  {
+    "version": "garryod-update-skeleton",
+    "url": "https://garryod.github.io/sample_degradation/garryod-update-skeleton/"
+  }
+]
