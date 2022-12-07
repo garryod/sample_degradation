@@ -44,7 +44,7 @@
 		"source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind",
 		"source=${localEnv:HOME}/.inputrc,target=/root/.inputrc,type=bind",
 		// map in home directory - not strictly necessary but useful
-		"source=${localEnv:HOME},target=${localEnv:HOME},type=bind,consistency=cached"
+		"source=/dls/i22/data/,target=/dls/i22/data/,type=bind,readonly"
 	],
 	// make the workspace folder the same inside and outside of the container
 	"workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
